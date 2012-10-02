@@ -11,7 +11,7 @@
 
 (defmethod session-expired-p ((session basic-session))
   (< (session.last-access session)
-     (- (get-universal-time) *default-session-longevity*)))
+     (- (get-universal-time) (session-longevity (session.application session)))))
 
 (defmethod session-valid-p ((session basic-session))
   (assert-session-lock-held session)
