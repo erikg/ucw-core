@@ -7,7 +7,7 @@
   "Name of the cookie used when storing the session id.")
 
 (defclass cookie-session-application-mixin ()
-  ()
+  ((ucw-session-cookie-name :accessor ucw-session-cookie-name :initarg :ucw-session-cookie-name :initform +ucw-session-cookie-name+))
   (:documentation "Class for applications which use cookies for sesion tracking.
 
 Cookie session applications work exactly like
@@ -25,11 +25,11 @@ using the standard mechanisms the id is looked for in a cookie."))
   ;; TODO not sure if this is the best place. why not add unconditionally to be more bullet-proof?
 
 
-  (add-cookie (make-cookie +ucw-session-cookie-name+
+  (add-cookie (make-cookie (ucw-session-cookie-name (context.application context))
 			   (session.id session)
 			   :path (application.url-prefix
 				  (context.application context)))))
 
 (defmethod find-session-id :around ((context cookie-session-request-context-mixin))
   (or (call-next-method)
-      (cookie-value +ucw-session-cookie-name+)))
+      (cookie-value (ucw-session-cookie-name (context.application context)))))
