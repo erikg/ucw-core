@@ -37,8 +37,7 @@ be converted into (component . component) form."))
     (when (typep (first contents) 'component)
       (setf args (copy-list args))
       (setf (getf args :contents)
-	    (iterate (for component in contents)
-		     (collect (cons component component))))))
+	    (mapcar (lambda (x) (cons x x)) contents))))
   (apply #'call-next-method c args))
 
 (defmethod shared-initialize :after ((c container) slot-names
