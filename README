@@ -40,57 +40,57 @@ UCW depends an a number of external libraries:
     * slime - Superior Lisp Interaction Mode for Emacs
     * cl-ppcre - regular expressions lib
     * cl-l10n - l10n and i18n lib
-    * trivial-sockets - handles stream sockets for undemanding network  
-      applications 
+    * trivial-sockets - handles stream sockets for undemanding network
+      applications
     * net.uri or PURI - parses URI's according to the RFC 2396
-      specification 
+      specification
     * cl-fad - a portable pathname library based on code from PCL
     * net-telent-date - an RFC822-compliand date parser and printer
     * cl-launch - invokes lisp code from the command line
     * detachtty - a screen-like detachment tool to be able to detach
-      and reattach the lisp server from and to a console 
+      and reattach the lisp server from and to a console
     * a server backend - be it mod_lisp (apache 1 or 2), araneida,
-      allegroserve, portable aserve or the built in httpd server 
+      allegroserve, portable aserve or the built in httpd server
     * asdf - a package loader facility
 
-    
+
 *** arnesi
 
 Arnesi is a Common Lisp utility suite. It contains various "bits 'n
 pieces" of code which were useful while developing other code. It can
-be found on http://common-lisp.net/project/bese/arnesi.html. 
+be found on http://common-lisp.net/project/bese/arnesi.html.
 
 You will need the latest version:
 
 darcs get http://common-lisp.net/project/bese/repos/arnesi_dev/
-    
+
 Daily snapshots are available at
-http://common-lisp.net/project/bese/tarballs/arnesi_dev-latest.tar.gz 
+http://common-lisp.net/project/bese/tarballs/arnesi_dev-latest.tar.gz
 
 
 *** yaclml
 
 yaclml is a collection of macros and utilities for generating XML/HTML
 like markup from lisp code. It can be found on
-http://common-lisp.net/project/bese/yaclml.html. 
+http://common-lisp.net/project/bese/yaclml.html.
 
 You will need the latest version:
 
 darcs get http://common-lisp.net/project/bese/repos/yaclml/
-    
+
 Daily snapshots are available at:
-http://common-lisp.net/project/bese/tarballs/yaclml-latest.tar.gz 
+http://common-lisp.net/project/bese/tarballs/yaclml-latest.tar.gz
 
 
 *** parenscript - ucw version
 
 Parenscript is a javascript compiler. You will need to get the latest
-development version: 
+development version:
 
 darcs get http://common-lisp.net/project/ucw/repos/parenscript/
-    
+
 Daily snapshots are available at:
-http://common-lisp.net/project/ucw/tarballs/parenscript-latest.tar.gz 
+http://common-lisp.net/project/ucw/tarballs/parenscript-latest.tar.gz
 
 
 *** iterate
@@ -99,34 +99,34 @@ Iterate is an iteration construct for Common Lisp. It can be found on
 http://common-lisp.net/project/iterate/
 
 Download link:
-http://common-lisp.net/project/iterate/releases/iterate-current.tar.gz 
+http://common-lisp.net/project/iterate/releases/iterate-current.tar.gz
 
 
 *** rfc2388 - ucw version
 
 Rfc2388 is a lisp implemantation of RFC 2388, which is used to process
 form data posted with HTTP POST method using enctype
-"multipart/form-data". 
+"multipart/form-data".
 
 UCW uses its own fork of rfc2388. You can get the latest code from the
 darcs repository located at
-http://common-lisp.net/project/ucw/repos/rfc2388: 
+http://common-lisp.net/project/ucw/repos/rfc2388:
 
 darcs get http://common-lisp.net/project/ucw/repos/rfc2388/
 
 Daily snapshots are available at
-http://common-lisp.net/project/ucw/tarballs/rfc2388-latest.tar.gz 
+http://common-lisp.net/project/ucw/tarballs/rfc2388-latest.tar.gz
 
 
 *** rfc2109 - ucw version
 
 Rfc2109 is the lisp implementation of the cookie protocol. You can get
-it at: http://common-lisp.net/project/rfc2109/: 
+it at: http://common-lisp.net/project/rfc2109/:
 
 darcs get http://common-lisp.net/project/rfc2109/rfc2109
-    
+
 Daily snapshots are available at
-http://www.common-lisp.net/project/rfc2109/release/rfc2109-latest.tar.gz 
+http://www.common-lisp.net/project/rfc2109/release/rfc2109-latest.tar.gz
 
 
 *** split-sequence
@@ -136,11 +136,11 @@ splits sequences
 info: http://www.cliki.net/SPLIT-SEQUENCE
 
 download: http://ww.telent.net/cclan/split-sequence.tar.gz (you might
-have to select a mirror first) 
+have to select a mirror first)
 
 If said link is dead, go to http://ww.telent.net/cclan-choose-mirror
 to delete your CCLAN-SITE cookie and choose another mirror. At least
-some of them are definitely working. 
+some of them are definitely working.
 
 
 *** SLIME
@@ -148,18 +148,18 @@ some of them are definitely working.
 The Superior Lisp Interaction Mode for Emacs.
 
 Download and install the latest CVS version of SLIME from
-http://common-lisp.net/project/slime. 
+http://common-lisp.net/project/slime.
 
 To checkout from CVS you must first login to the repository:
 
 export CVSROOT=:pserver:anonymous@common-lisp.net:/project/slime/cvsroot
 cvs login
-    
+
 Enter anonymous when prompted for the password. You can then check out
-the latest version with: 
+the latest version with:
 
 cvs checkout slime
-    
+
 It's swank you want to add to your asd systems dir. To solve a current
 problem with cl-launch you might want to overwrite your swank.asd file
 with this one:
@@ -188,11 +188,11 @@ Download the latest version: http://weitz.de/files/cl-ppcre.tar.gz
 
 Networking library to create small server applications. Download the
 latest version from: http://ww.telent.net/cclan/trivial-sockets.tar.gz
-(you might have to select a mirror first. 
+(you might have to select a mirror first.
 
 If said link is dead, go to http://ww.telent.net/cclan-choose-mirror
 to delete your CCLAN-SITE cookie and choose another mirror. At least
-some of them are definitely working. 
+some of them are definitely working.
 
 Or use asdf install.
 
@@ -201,20 +201,20 @@ Or use asdf install.
 
 All of the backends (except araneida) depend on Franz's open-source
 net.uri library. It only works on Allegro but Kevin Rosenberg has made
-a portable version called PURI. 
+a portable version called PURI.
 
 For allegro users, NET.URI can be downloaded from here (it may be
 included in your version of acl):
-http://opensource.franz.com/uri/index.html 
+http://opensource.franz.com/uri/index.html
 
 If you're not using allegro you'll need puri which can be downloaded
-from http://puri.b9.com/download.html 
+from http://puri.b9.com/download.html
 
 
 *** cl-fad
 
 A portable pathname library based on code from Peter Seibels book
-Practical Common Lisp. 
+Practical Common Lisp.
 
 info: http://www.cliki.net/CL-FAD
 
@@ -234,7 +234,7 @@ download: http://ww.telent.net/cclan/net-telent-date.tar.gz
 *** cl-launch
 
 A bash script to make your Lisp software easily invokable from the
-shell command-line. 
+shell command-line.
 
 info: http://www.cliki.net/cl-launch
 
@@ -249,7 +249,7 @@ what you want if you made a symbolic link to another dir. The easiest way
 to get around this problem is to overwrite your swank.asd file (in the
 slime directory root), with this one:
 
-http://cl-debian.alioth.debian.org/repository/pvaneynd/slime/debian/swank.asd 
+http://cl-debian.alioth.debian.org/repository/pvaneynd/slime/debian/swank.asd
 
 If you are a Debian user and you got slime/swank through apt-get, you
 already have this version on your harddisk/pendrive.
@@ -257,7 +257,7 @@ already have this version on your harddisk/pendrive.
 The downside might be that swank won't work anymore as it should,
 although i haven't heard anyone about this yet. Another approach is to
 copy your swank*.fasls from the slime directory to the relevant shadow
-directory under ~/.cache/... 
+directory under ~/.cache/...
 
 Check this thread for more info:
 http://common-lisp.net/pipermail/slime-devel/2006-March/004664.html
@@ -271,7 +271,7 @@ A screen-like detachment tool to be able to detach and re-attach the
 lisp server from and to a console. Ucw uses a custom detachtty
 version, e.g. detachtty-9 plus a patch by Kevin Rosenberg. It accepts
 an eval argument when invoking a lisp, with obvious benefits. Get it
-through Darcs: 
+through Darcs:
 
 darcs get http://common-lisp.net/project/bese/repos/detachtty/
 
@@ -279,7 +279,7 @@ Go to the directory root and compile and install:
 
 make
 make install
-    
+
 
 ** the backend
 
@@ -292,25 +292,25 @@ built-in httpd server
 You can choose between apache 1 and 2. First of course you have to
 have a Apache web server up and runnnig; then you have to add the
 mod-lisp module by Marc Battyani which you find at
-http://www.fractalconcept.com/asp/html/mod_lisp.html 
+http://www.fractalconcept.com/asp/html/mod_lisp.html
 
 First download the mod_lisp c file. Watch out, don't follow the logic
 of the website. Except for the windows version the info is outdated
 concerning the apache 1 version and info about apache 2 is
 non-existent. Go to subversion from the download page or click the
-links below: 
+links below:
 
     * apache 1 .c file - mod_lisp.c
     * apache 2 .c file - mod_lisp2.c
-   
+
 use the command:
 
 apxs -i -c mod_lisp.c
-    
+
 or
 
 apxs2 -i -c mod_lisp2.c
-    
+
 for respectively apache 1 or 2. This will install the module in the
 appropriate apache directory. Then add the following lines to
 'httpd.conf' in your apache configuration directory for both apache 1
@@ -318,15 +318,15 @@ and 2. Just be sure to change mod_lisp.so to mod_lisp2.so for apache
 2:
 
 # This goes near the other LoadModlue directives
-    
+
 LoadModule lisp_module modules/mod_lisp.so
-    
+
 LispServer 127.0.0.1 3001 ucw
-    
+
 <LocationMatch "/path/.*\.ucw">
                SetHandler lisp-handler
 </LocationMatch>
-    
+
 This means that ucw INTERNALLY talks to apache on port 3001 at the
 internet address 127.0.0.1 (so in this case your localhost). The
 locationmatch part redirects all traffic from (in this case) 127.0.0.1
@@ -394,7 +394,7 @@ directories in the list asdf:*central-registry*. To make a system
 definition visible you can either push the name of the directory which
 contains the .asd file onto the list asdf:*central-registry* or you
 can create a symlink from the .asd file to a directory which is
-already in the list asdf:*central-registry*. 
+already in the list asdf:*central-registry*.
 
 For example: on some linux installations the directory
 /usr/share/common-lisp/systems is in the list asdf:*central-registry*,
@@ -444,7 +444,7 @@ relativly small than just send a plain old diff or a tar ball of the
 arch changeset to the list. If it is bigger, send it to ucw_public
 and eventually it will find it's way to ucw_dev. If the change is
 bigger than bigger or requires multiple patches over time then branch
-off of ucw_dev and publish your repository with your changes. 
+off of ucw_dev and publish your repository with your changes.
 
 ** Reporting BUGS
 

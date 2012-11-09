@@ -34,7 +34,7 @@ and define their RENDER-RANGE-VIEW-ITEM methods on that.")
     (with current-window = '())
     (for index upfrom 1)
     (for ele in data)
-    (push (cons index ele) current-window)    
+    (push (cons index ele) current-window)
     (when (zerop (mod index window-size))
       (push (nreverse current-window) windows)
       (setf current-window '()))
@@ -59,7 +59,7 @@ and define their RENDER-RANGE-VIEW-ITEM methods on that.")
                            (tal-env 'index (car item-cons)
                                     'item (cdr item-cons)))
                          current-window))
-       (windows . ,(loop 
+       (windows . ,(loop
                       for page-number upfrom 1
                       for w in (range-view.windows range)
                       when (eq w current-window)
@@ -97,7 +97,7 @@ applies ITEM to princ (via <:as-html)."
 
 (defmethod/cc scroll-end ((range range-view))
   (setf (range-view.offset range) (1- (length (range-view.windows range)))))
-  
+
 (defmethod/cc scroll-forward ((view range-view) &optional (n 1))
   (with-slots (offset windows)
       view
@@ -116,23 +116,23 @@ applies ITEM to princ (via <:as-html)."
   (setf (range-view.offset range) window-number))
 
 ;; Copyright (c) 2003-2005 Edward Marco Baringer
-;; All rights reserved. 
-;; 
+;; All rights reserved.
+;;
 ;; Redistribution and use in source and binary forms, with or without
 ;; modification, are permitted provided that the following conditions are
 ;; met:
-;; 
+;;
 ;;  - Redistributions of source code must retain the above copyright
 ;;    notice, this list of conditions and the following disclaimer.
-;; 
+;;
 ;;  - Redistributions in binary form must reproduce the above copyright
 ;;    notice, this list of conditions and the following disclaimer in the
 ;;    documentation and/or other materials provided with the distribution.
-;; 
+;;
 ;;  - Neither the name of Edward Marco Baringer, nor BESE, nor the names
 ;;    of its contributors may be used to endorse or promote products
 ;;    derived from this software without specific prior written permission.
-;; 
+;;
 ;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 ;; "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 ;; LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR

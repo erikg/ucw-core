@@ -1,3 +1,5 @@
+
+
 (in-package :ucw-test)
 
 (defsuite* (test/callback :in test) ()
@@ -44,10 +46,3 @@
                                  callback-maker ,(callback-maker-of self)
                                  ;;url ,(print-uri-to-string (compute-url *test-application* :action-id "asd"))
                                  ))))))))))
-
-
-
-
-
-
-

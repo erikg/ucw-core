@@ -23,7 +23,7 @@
   :class ucw-system
   :components
   ((:module :src
-    :components 
+    :components
     ((:module :ucw-standard
       :components ((:file "standard-package")
 		   (:file "standard-action" :depends-on ("standard-package"))
@@ -69,7 +69,7 @@
   :class ucw-system
   :components
   ((:module :doc
-    :components 
+    :components
     ((:file "example-code"))))
   :properties ((version "0.9"))
   :depends-on (:ucw))

@@ -1,3 +1,4 @@
+
 ;; -*- lisp -*-
 ;; See the file LICENCE for licence information.
 
@@ -116,4 +117,3 @@ save the values of the local variables back into the session."
                        (close ,stream)
                        t)
                (ucw.rerl.warn "Failed to close temporary file in WITH-SESSION-SPECIFIC-TEMPORARY-FILE."))))))))
-

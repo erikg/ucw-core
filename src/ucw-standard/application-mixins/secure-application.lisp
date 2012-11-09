@@ -39,7 +39,7 @@ It must return authenticated USER data or NIL on answer.")
                         :initform '(error-message-window)
                         :documentation
                         "Calls to these components are never checked."))
-  (:documentation 
+  (:documentation
    "Mixin class for applications which require authorized access.
 Concrete application must specialize the following methods:
 APPLICATION-FIND-USER (APPLICATION USERNAME)

@@ -1,3 +1,4 @@
+
 ;; See the file LICENCE for licence information.
 (in-package :ucw)
 
@@ -166,8 +167,3 @@
 (defclass l10n-application (standard-application l10n-application-mixin)
   ()
   (:documentation "See L10N-APPLICATION-MIXIN for details."))
-
-
-
-
-

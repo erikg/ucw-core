@@ -23,7 +23,7 @@
    "Your session has expired. Do you want to reload the page to start a fresh one?")
   (unknown-server-error "Unknown server error")
   (network-error "There was an error while communicating with the server, try again.")
-  
+
   (progress.tooltip "Click to remove")
   (progress-label.default "Loading...")
   (progress-label.closing-tab "Closing tab...")

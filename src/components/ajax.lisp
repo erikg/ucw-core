@@ -1,3 +1,4 @@
+
 (in-package :it.bese.ucw)
 
 (enable-bracket-syntax)
@@ -126,7 +127,3 @@ By default it simply calls render after marking this fact on the ajax-component-
                   :report "Remove dirtyness and leave me alone..."
                   (setf (dirtyp c) nil))))))
       (iterate-visible-dirty-components #'check-for-remained-dirty-component))))
-
-
-
-

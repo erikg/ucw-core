@@ -1,3 +1,4 @@
+
 (in-package :cl-user)
 
 (defpackage #:it.bese.ucw.test
@@ -7,6 +8,3 @@
   (:export #:test))
 
 (in-package :ucw-test)
-
-
-

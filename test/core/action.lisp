@@ -1,3 +1,4 @@
+
 (in-package :ucw-test)
 
 (defsuite* (test/action :in test) ()
@@ -206,7 +207,3 @@
          uri))))
   (:teardown
    (ensure-test-application-with-action-dispatcher :teardown)))
-
-
-
-

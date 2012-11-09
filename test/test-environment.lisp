@@ -68,7 +68,7 @@
                                                     (:dom (cxml-dom:make-dom-builder))
                                                     (:xmls (cxml-xmls:make-xmls-builder)))))))))
       (values body status headers)))
-  
+
   (:method ((path ucw-core:uri) &rest args)
     (apply 'web (print-uri-to-string path) args)))
 

@@ -1,5 +1,17 @@
+
+
+
+
+
+
+
+
+
+
+
+
 * Getting Started with UncommonWeb.
-  
+
 ** What UCW is.
 
 UCW is a multi-paradigm framework for building Web based applications
@@ -29,27 +41,27 @@ Users are encouraged to explore the higher-level ucw-based frameworks
 once a solid grounding in UCW concepts has been acheived.
 
 ** Supported Platforms
-   
+
  SBCL/linux/x86. UCW attempts to be portable, and reports of it
  working elsewhere are welcome.
 
 ** Dependencies
-    :arnesi 
-    :swank 
-    :iterate 
-    :yaclml 
+    :arnesi
+    :swank
+    :iterate
+    :yaclml
     :local-time
-    :usocket 
-    :rfc2109 
-    :net-telent-date 
+    :usocket
+    :rfc2109
+    :net-telent-date
     :cl-fad
-    :trivial-garbage 
+    :trivial-garbage
     :bordeaux-threads
-    :rfc2388-binary 
-    :puri 
+    :rfc2388-binary
+    :puri
     :cl-ppcre
- 
- ** Installation 
+
+ ** Installation
 
 Currently, the only way to install UCW is from the darcs archive. Most
 of its dependencies should be installed the same way.
@@ -121,8 +133,8 @@ against those expected by applications registered with the SERVER.
 
 (in-package :ucw-user)
 
-(defvar *example-server* 
-  (make-instance 'standard-server 
+(defvar *example-server*
+  (make-instance 'standard-server
     :backend (make-backend :httpd :port 8080)))
 
 (defun start-example-server ()
@@ -139,7 +151,7 @@ delegate their requests to the RERL, those created as ENTRY-POINTS and
 ACTION dispatchers.
 
 
-(defclass example-application (standard-application 
+(defclass example-application (standard-application
 			       cookie-session-application-mixin)
   ()
   (:default-initargs
@@ -166,7 +178,7 @@ ENTRY-POINTs. These are bookmarkable, REST-style linkable resources
 exposed directly to the web. Lets look at a simple example.
 
 (defentry-point "hello.ucw" (:application *example-application*
-			     :with-call/cc nil) 
+			     :with-call/cc nil)
     ()
   (format (html-stream (context.response *context*))
 	  "Hello World"))
@@ -203,7 +215,7 @@ an entry point handler) with arguments are a perfect solution.
 
 
 (defentry-point "hello2.ucw" (:application *example-application*
-			     :with-call/cc nil) 
+			     :with-call/cc nil)
     ((message "World"))
   (format (html-stream (context.response *context*))
 	  "Hello ~A" message))
@@ -215,7 +227,7 @@ display "Hello Universe" as expected.
 
 See the documentation of defentry-point for more details about the
 REQUEST-LAMBDA-LIST and other arguments.
- 
+
 
 *** YACLML: Yet another common lisp markup language.
 
@@ -234,31 +246,31 @@ means that calls to the HTML macros look a little like HTML, an tags
 are easily distinguised from lisp code. Attributes are supplied as
 keyword arguments, and must appear directly after the tag name.
 
-(defun render-page-wrapper (title thunk) 
-  (<:html 
+(defun render-page-wrapper (title thunk)
+  (<:html
    (<:head (<:title (<:as-html title)))
    (<:body :id "body" (funcall thunk))))
 
 (defun render-message (message)
-  (<:span 
-   :class "message" 
+  (<:span
+   :class "message"
    (<:as-html "Hello " message "!")))
 
 (defun render-message-form (name)
-  (<:form 
+  (<:form
    (<:as-html "Enter a new message:")
-   (<:input 
+   (<:input
     :type "text" :name (string-downcase name))
    (<:submit)))
 
-(defentry-point "hello-yaclml.ucw" 
-    (:application *example-application* 
-     :with-call/cc nil) 
+(defentry-point "hello-yaclml.ucw"
+    (:application *example-application*
+     :with-call/cc nil)
     ((message nil))
-  (render-page-wrapper "UCW Example" 
-    (lambda () 
+  (render-page-wrapper "UCW Example"
+    (lambda ()
       (<:style ".message {font-size:2em;font-weight:bold")
-      (if message 
+      (if message
 	  (render-message message)
 	  (render-message-form 'message)))))
 
@@ -311,9 +323,9 @@ rest. When nesting components, the slot that contains the component
 should be marked ":component t". For the simple example that follows
 it doesn't matter, but we will be re-using the window component in
 later more involved examples.
- 
+
 (defclass example-window (window-component)
-  ((title :accessor window.title 
+  ((title :accessor window.title
 	  :initform "UCW Example"
 	  :initarg :title)
    (body :accessor window.body
@@ -336,11 +348,11 @@ also serves to show how one might 'manually' render a component. In
 general, UCW calls the RENDER method as part of the RERL. However, in
 this case we never pass control to a component (we havn't made it to
 control flow yet), so something like this is neccessary.
- 
-(defun render-example-window (body-component-name 
+
+(defun render-example-window (body-component-name
 			      &rest initargs)
-  (render 
-   (make-instance 'example-window  
+  (render
+   (make-instance 'example-window
     :body (apply #'make-instance body-component-name initargs))))
 
 There are situations, usually when mixing REST with UCW control flow,
@@ -349,10 +361,10 @@ useful example.
 
 Finally, an entry point to bring it all together.
 
-(defentry-point "hello-components.ucw" 
-    (:application *example-application*) 
+(defentry-point "hello-components.ucw"
+    (:application *example-application*)
     ((message nil))
-        (if message 
+        (if message
 	    (render-example-window 'example-message :message message)
 	    (render-example-window 'example-form)))
 
@@ -369,7 +381,7 @@ variables were used to keep state, in proper REST fashion, and as such
 the actual control flow is hidden in an adhoc state machine. Wouldn't
 it be nice to simply be able to say something like:
 
-(unless message 
+(unless message
  (setf message (get-message-from-user)))
 (display-message message)
 
@@ -434,18 +446,18 @@ too much logic in our entry points.. we're basically still making web
 pages here. The next section is the beginning of the end of this, i
 promise.
 
-(defentry-point "hello-session.ucw" 
+(defentry-point "hello-session.ucw"
     (:application *example-application*
-     :with-call/cc nil) 
+     :with-call/cc nil)
     ((message nil) (reset nil reset-requested-p))
 
-  (when message 
+  (when message
     (setf $message message))
 
   (when reset-requested-p
     (setf $message nil))
-  
-  (if $message 
+
+  (if $message
       (render-example-window 'example-session-message)
       (render-example-window 'example-session-form)))
 
@@ -485,8 +497,8 @@ details needed to perform an action. We'll simply create a mixin that
 adds the name of our entry point to the URL.
 
 (defclass entry-point-action-mixin ()
-  ((entry-point :accessor entry-point 
-		:initarg :entry-point 
+  ((entry-point :accessor entry-point
+		:initarg :entry-point
 		:initform "hello-action.ucw")))
 
 (defmethod compute-url :around (action (component entry-point-action-mixin))
@@ -501,17 +513,17 @@ Also, a FRAME can contain a top level WINDOW-COMPONENT. If it exists,
 the RENDER method will be called on it. We can use this to create the
 primitive control flow operator i mentioned earler.
 
-(defun go-to (body-component-name 
+(defun go-to (body-component-name
 		       &rest initargs)
-  (setf (frame.window-component 
+  (setf (frame.window-component
 	 (context.current-frame *context*))
-	(make-instance 'example-window  
-		       :body (apply #'make-instance 
-				    body-component-name 
+	(make-instance 'example-window
+		       :body (apply #'make-instance
+				    body-component-name
 				    initargs))
 ))
 
-**** Actions 
+**** Actions
 
 Next, we'll use the compute-url method, along with REGISTER-ACTION, to
 create a function that is attached to a URL. When that URL is
@@ -522,7 +534,7 @@ requests and components we've created.
 
 (defun reset-message ()
   (setf $message nil)
-  (go-to 'example-form)) 
+  (go-to 'example-form))
 
 (defmethod render-reset-link ((self action-reset-link-mixin))
   (let* ((action (register-action (:with-call/cc nil)
@@ -550,15 +562,15 @@ And again, lets put it all together.
   ()
   (:metaclass standard-component-class))
 
-(defentry-point "hello-action.ucw" 
+(defentry-point "hello-action.ucw"
     (:application *example-application*
-     :with-call/cc nil) 
+     :with-call/cc nil)
     ((message nil))
 
-  (when message 
+  (when message
     (setf $message message))
-  
-  (if $message 
+
+  (if $message
       (go-to 'example-action-message)
       (go-to 'example-session-form)))
 
@@ -574,10 +586,10 @@ value, and can be used as setters for input from forms or urls.
   (:metaclass standard-component-class))
 
 (defmethod render-input (component)
-  (let ((callback (register-callback 
+  (let ((callback (register-callback
 		   (lambda (value)
 		     (setf $message value)))))
-    (<:input 
+    (<:input
      :type "text"
      :name callback)))
 
@@ -594,9 +606,9 @@ syntax for setting forms to call actions.
   (<:submit))
 
 (defmethod render ((self example-callback-form))
- (<ucw:form 
+ (<ucw:form
    :function (lambda ()
-	       (when $message 
+	       (when $message
 		 (go-to 'example-callback-message)))
    (<:as-html "Enter a new message:")
    (render-input self)
@@ -622,11 +634,11 @@ form/url arguments seamlessly.We could, of course, still use entry
 point arguments where it makes sense, but we no longer have to do so
 for most uses.
 
-(defentry-point "hello-callback.ucw" 
+(defentry-point "hello-callback.ucw"
     (:application *example-application*
      :with-call/cc nil) ()
-  
-  (if $message 
+
+  (if $message
       (go-to 'example-callback-message)
       (go-to 'example-callback-form)))
 
@@ -652,8 +664,8 @@ return. Using these, we can make our message component into a generic
 input component with ease.
 
 (defclass example-control-flow-form (example-form)
-  ((prompt :accessor prompt 
-	   :initarg :prompt 
+  ((prompt :accessor prompt
+	   :initarg :prompt
 	   :initform "Enter a new message:"))
   (:metaclass standard-component-class))
 
@@ -719,10 +731,10 @@ separated our display logic from our control flow.
 Our entry point is now clean and logical.. there is no trace of
 display code, no control flow, passing of state, etc.
 
-(defentry-point "hello-control-flow.ucw" 
+(defentry-point "hello-control-flow.ucw"
     (:application *example-application*) ()
-  (loop 
-   (unless $message 
+  (loop
+   (unless $message
      (get-message-from-user))
    (display-message $message)))
 
@@ -735,63 +747,3 @@ arguments and return values, and the GOTO can be replaced with a loop.
 In our small example above, all this goodness doesn't gain us
 much. The following chapters will implement a complex application, a
 common lisp development environment.
-
-
-
-
-
-
-
-
-
-
-	   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
- 
-
-
-
-
-       

@@ -1,3 +1,5 @@
+
+
 ;;; -*- lisp -*-
 
 (in-package :it.bese.ucw)
@@ -7,4 +9,3 @@
                      (collect (strcat "dojo:" (js::symbol-to-js attribute)))
                      (collect value)))
     ,@body))
-

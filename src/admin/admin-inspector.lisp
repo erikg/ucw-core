@@ -17,12 +17,12 @@
   (call 'template-inspector
         :template-name (tal-to-inspect self)
         :template-expansion (preprocess-template (tal-to-inspect self) nil (datum self))))
-  
+
 (defmethod render ((c template-inspector))
   (<:html
    (<:body
     (<:p "Expansion of template " (<:as-html (slot-value c 'template-name )))
-    (<:pre 
+    (<:pre
      (<:as-html
       (let ((*print-length* nil)
             (*print-level* nil)
@@ -36,23 +36,23 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Copyright (c) 2003-2005 Edward Marco Baringer
-;;; All rights reserved. 
-;;; 
+;;; All rights reserved.
+;;;
 ;;; Redistribution and use in source and binary forms, with or without
 ;;; modification, are permitted provided that the following conditions are
 ;;; met:
-;;; 
+;;;
 ;;;  - Redistributions of source code must retain the above copyright
 ;;;    notice, this list of conditions and the following disclaimer.
-;;; 
+;;;
 ;;;  - Redistributions in binary form must reproduce the above copyright
 ;;;    notice, this list of conditions and the following disclaimer in the
 ;;;    documentation and/or other materials provided with the distribution.
-;;; 
+;;;
 ;;;  - Neither the name of Edward Marco Baringer, nor BESE, nor the names
 ;;;    of its contributors may be used to endorse or promote products
 ;;;    derived from this software without specific prior written permission.
-;;; 
+;;;
 ;;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 ;;; "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 ;;; LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR

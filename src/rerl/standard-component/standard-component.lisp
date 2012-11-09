@@ -19,7 +19,7 @@ case of top level components will this slot be NIL.")
           :documentation
 "The place (a PLACE object) which holds this component.
 
-Only in the case of top level component will this slot be NIL.")   
+Only in the case of top level component will this slot be NIL.")
    (dirtyp :initform nil :reader dirtyp
            :documentation "A flag whether the component was invalidated (which means that it needs rendering).")
    (session :initform (context.session *context*)
@@ -305,7 +305,7 @@ extra options are allowed:
                    (setf component `(,component ,name)))
                  `(defmethod render (,component)
                     ,@body)))
-         
+
              (effective-options ()
                (remove-if (lambda (option)
                             (member (car option) '(:entry-point :metaclass :default-backtrack
@@ -321,7 +321,7 @@ extra options are allowed:
 			   (getf initargs :backtrack 'unspecified))
 		       (default-backtrack-option))
 		  initargs))))
-    
+
       `(progn
          (defclass ,name ,supers
            ,(mapcar #'process-slot slots)
@@ -334,23 +334,23 @@ extra options are allowed:
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Copyright (c) 2003-2005 Edward Marco Baringer
-;;; All rights reserved. 
-;;; 
+;;; All rights reserved.
+;;;
 ;;; Redistribution and use in source and binary forms, with or without
 ;;; modification, are permitted provided that the following conditions are
 ;;; met:
-;;; 
+;;;
 ;;;  - Redistributions of source code must retain the above copyright
 ;;;    notice, this list of conditions and the following disclaimer.
-;;; 
+;;;
 ;;;  - Redistributions in binary form must reproduce the above copyright
 ;;;    notice, this list of conditions and the following disclaimer in the
 ;;;    documentation and/or other materials provided with the distribution.
-;;; 
+;;;
 ;;;  - Neither the name of Edward Marco Baringer, nor BESE, nor the names
 ;;;    of its contributors may be used to endorse or promote products
 ;;;    derived from this software without specific prior written permission.
-;;; 
+;;;
 ;;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 ;;; "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 ;;; LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR

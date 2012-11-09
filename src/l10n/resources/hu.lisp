@@ -23,7 +23,7 @@
   (unknown-server-error "Ismeretlen eredetű szerver hiba")
   (ucw.session-expired-approve-redirect-message "Letelt a biztonsági idő. Szeretné frissíteni az oldalt?")
   (network-error "Hálózati hiba történt, probálkozzon újra, esetleg kicsit később.")
-  
+
   (progress.tooltip "Kattints az eltávolításhoz")
   (progress-label.default "Töltés...")
   (progress-label.closing-tab "Tab bezárása...")

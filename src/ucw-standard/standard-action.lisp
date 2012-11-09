@@ -7,7 +7,7 @@
   (:metaclass c2mop:funcallable-standard-class))
 
 (defmethod shared-initialize :before ((action standard-action) slots &rest args)
-  (declare (ignore slots args))  
+  (declare (ignore slots args))
   (setf (action-source-component action) *source-component*))
 
 (defmethod handle-action :around ((action standard-action) a s f)
@@ -46,15 +46,15 @@ dialogs which must be dealt with before the user can continue."
 (defvar +action-compound-name-delimiter+ #\|)
 
 (defmethod find-action-id :around ((context standard-request-context))
-  (or 
+  (or
    (loop
-      :for (k . v) in (parameters 
+      :for (k . v) in (parameters
 		      (context.request context))
       :do(destructuring-bind (param-name &optional action-id)
-	      (split-sequence:split-sequence 
+	      (split-sequence:split-sequence
 	       +action-compound-name-delimiter+ k)
-	    (when (and action-id 
-		       (string= 
+	    (when (and action-id
+		       (string=
 			+action-parameter-name+ param-name))
 	      (return action-id))))
    (call-next-method)))

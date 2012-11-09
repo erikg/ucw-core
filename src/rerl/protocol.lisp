@@ -343,7 +343,7 @@ This method must destructivly modify CONTEXT so that it becomes
 indistinguishable from a freshly created object as returned by
 make-request-context."))
 
-;;;; ** The generic function SERVICE 
+;;;; ** The generic function SERVICE
 
 ;;;; Service method and various constants and variables used while
 ;;;; serving a request.
@@ -528,7 +528,7 @@ initialize-backend, startup-backend and shutdown-backend."))
   single threaded lisps."))
 
 (defgeneric shutdown-backend (backend &rest shutdown-args)
-  (:documentation "Stop the RERL and release any resources. 
+  (:documentation "Stop the RERL and release any resources.
    In multi-threaded backends, this function MUST block until the socket is closed."))
 
 (defgeneric publish-directory (backend directory-pathname url-base)
@@ -583,7 +583,7 @@ path's, most specific first."))
 The returned string may share structure with objects in the
 request and sholud be considered read-only. The returned
 query-path must be already escaped."))
- 
+
 (defgeneric get-parameter (request parameter-name)
   (:documentation "Returns the query value, a string or a list of
   strings, associated with the name PARAMETER-NAME. As with
@@ -699,23 +699,23 @@ If this function returns it means that the callers must try to clean up
 and continue."))
 
 ;; Copyright (c) 2003-2005 Edward Marco Baringer
-;; All rights reserved. 
-;; 
+;; All rights reserved.
+;;
 ;; Redistribution and use in source and binary forms, with or without
 ;; modification, are permitted provided that the following conditions are
 ;; met:
-;; 
+;;
 ;;  - Redistributions of source code must retain the above copyright
 ;;    notice, this list of conditions and the following disclaimer.
-;; 
+;;
 ;;  - Redistributions in binary form must reproduce the above copyright
 ;;    notice, this list of conditions and the following disclaimer in the
 ;;    documentation and/or other materials provided with the distribution.
-;; 
+;;
 ;;  - Neither the name of Edward Marco Baringer, nor BESE, nor the names
 ;;    of its contributors may be used to endorse or promote products
 ;;    derived from this software without specific prior written permission.
-;; 
+;;
 ;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 ;; "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 ;; LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR

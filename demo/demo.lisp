@@ -36,7 +36,7 @@
 
 (defcomponent demo-window (standard-window-component)
   ()
-  (:default-initargs 
+  (:default-initargs
       :body (make-instance 'demo-component)))
 
 (define-symbol-macro $window (context.window-component *context*))
@@ -54,7 +54,7 @@
 (defmethod render ((self demo-component))
   (<:H1 "Lisp On Lines Web test suite")
      (render (slot-value self 'test))
-  (<:div 
+  (<:div
    :style "border:1px solid black;"
    (render (slot-value self 'component))))
 
@@ -62,7 +62,7 @@
   ((message :initform "test" :accessor message :initarg :message)))
 
 (defmethod render ((self demo-render))
-  (<:h3 :id "test-render" 
+  (<:h3 :id "test-render"
 	(<:as-html (format nil "Hello ~A." (message self)))))
 
 (defcomponent demo-simple-action ()
@@ -70,46 +70,46 @@
 
 (defmethod render ((self demo-simple-action))
   (<:ul
-   (<:li (<ucw:a 
-	  :function 
+   (<:li (<ucw:a
+	  :function
 	  (lambda ()
-	    (setf (message $component) 
+	    (setf (message $component)
 		  (format nil "~A : ~A" (message $component) "FUNCTION")))
 	  "Test <:A :FUNCTION type actions"))
-   (<:li 
-    (<ucw:a 
-     :action (setf (message $component) 
+   (<:li
+    (<ucw:a
+     :action (setf (message $component)
 		   (format nil "~A : ~A" (message $component) "ACTION"))
      "Test <:A :ACTION type actions"))
-   (<:li 
-    (<ucw:a 
-     :action* (make-action 
+   (<:li
+    (<ucw:a
+     :action* (make-action
 	       (lambda ()
-		 (setf (message $component) 
+		 (setf (message $component)
 		       (format nil "~A : ~A" (message $component) "ACTION*"))))
      "Test <:A :ACTION* type actions"))
-   (<:li 
-    (<ucw:a 
+   (<:li
+    (<ucw:a
      :action (call-component $component (make-instance 'demo-answer))
      "Test CALL-COMPONENT/ANSWER-COMPONENT"))
-   (<:li 
-    (<ucw:a 
+   (<:li
+    (<ucw:a
      :action (call-component $component (make-instance 'demo-call-magic))
      "Test CALL/ANSWER MAGIC"))
-   (<:li 
-    (<ucw:a 
+   (<:li
+    (<ucw:a
      :action (call-component $component (make-instance 'demo-call-answer-action-magic))
      "Test CALL/ANSWER ACTION MAGIC"))
-   (<:li 
-    (<ucw:a 
+   (<:li
+    (<ucw:a
      :action (call-component $component (make-instance 'demo-simple-form))
      "Test Simple Form"))
-   (<:li 
-    (<ucw:a 
+   (<:li
+    (<ucw:a
      :action (call-component $component (make-instance 'demo-multi-submit-form))
      "Test Multi Form"))
-   (<:li 
-    (<ucw:a 
+   (<:li
+    (<ucw:a
      :action (call-component $component (make-instance 'demo-input))
      "Test Form input"))
 ))
@@ -126,7 +126,7 @@
 
 (defmethod render :wrapping ((self demo-simple-form))
   (call-next-method)
-  (<ucw:form 
+  (<ucw:form
    :action (setf (message self) "Form Submitted")
    (<:submit))
   (<ucw:a :action (answer-component self nil) "Go Back."))
@@ -136,7 +136,7 @@
 
 (defmethod render :wrapping ((self demo-multi-submit-form))
   (call-next-method)
-  (<ucw:form 
+  (<ucw:form
    :action (setf (message self) "Form Submitted")
    (<:submit)
    (<ucw:submit :action (setf (message self) "Submit 2" )
@@ -145,24 +145,24 @@
 		3))
   (<ucw:a :action (answer-component self nil) "Go Back."))
 
-(defcomponent demo-input (demo-render) 
- ()	      
+(defcomponent demo-input (demo-render)
+ ()
   (:default-initargs :message "Testing INPUTS"))
 
 (defmethod render :wrapping ((self demo-input))
   (call-next-method)
-  (<ucw:form 
+  (<ucw:form
    :function (constantly t)
    (<ucw:input :type "text" :accessor (message self))
-   
+
    (<:submit)
   )
   (<ucw:a :action (answer-component self nil) "Go Back."))
 
 
 
-(defcomponent demo-call-magic (demo-render) 
- ()	      
+(defcomponent demo-call-magic (demo-render)
+ ()
   (:default-initargs :message "Testing CALL magic."))
 
 (defmethod render :wrapping ((self demo-call-magic))
@@ -173,17 +173,17 @@
 
 
 
-(defcomponent demo-answer-magic (demo-render) 
- ()	      
+(defcomponent demo-answer-magic (demo-render)
+ ()
   (:default-initargs :message "Hit it to answer"))
 
 (defmethod render :wrapping ((self demo-answer-magic))
   (call-next-method)
-  
+
   (<ucw:a :action (answer "Ja, dat is vut ve answer" ) "IT! (hit here)"))
 
-(defcomponent demo-call-answer-action-magic (demo-render) 
- ()	      
+(defcomponent demo-call-answer-action-magic (demo-render)
+ ()
   (:default-initargs :message "Hit it to answer"))
 
 (defaction test-call-component ()
@@ -195,5 +195,5 @@
 (defmethod render :wrapping ((self demo-call-answer-action-magic))
   (call-next-method)
   (<ucw:a :action (test-call-component) "Test CALL from ACTION")
-  (<:br)  
+  (<:br)
   (<ucw:a :action (test-answer-component) "Test ANSWER from ACTION"))

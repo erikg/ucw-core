@@ -1,3 +1,4 @@
+
 (in-package :ucw-test)
 
 (defsuite* (test/server :in test))
@@ -7,8 +8,8 @@
 
 (defmethod handle-request :around ((server test-server) request response)
   "Handle a special test case to ensure the server is working.
-This also tests: 
-CALL-AS-REQUEST-HANDLER & 
+This also tests:
+CALL-AS-REQUEST-HANDLER &
 CALL-AS-RESPONSE-HANDLER"
   (if (string= (query-path request) "/brillant.ucw")
       (call-as-request-handler
@@ -83,4 +84,3 @@ CALL-AS-RESPONSE-HANDLER"
   (with-fixture ensure-test-server
     (test-backend-listening)
     (is (string= "BRILLANT!" (web "brillant.ucw")))))
-

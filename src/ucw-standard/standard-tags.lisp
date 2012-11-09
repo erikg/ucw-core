@@ -1,6 +1,6 @@
 (in-package :ucw-standard)
 
-;;; * Standard YACLML tags. 
+;;; * Standard YACLML tags.
 
 ;;; * Utilities
 
@@ -17,17 +17,17 @@
   `(with-unique-names (url action-object action-id current-frame)
     (assert (xor action action* function) nil
 	    "Must supply only one of ACTION,  ACTION* or FUNCTION")
-    `(let* ((,current-frame (context.current-frame *context*)) 
-	    (,action-object  ,(or action* 
-				  `(make-action 
+    `(let* ((,current-frame (context.current-frame *context*))
+	    (,action-object  ,(or action*
+				  `(make-action
 				    ,(or function
 					 `(lambda ()
 					    (with-call/cc ,action))))))
-	    (,action-id  (register-action-in-frame 
-			  ,current-frame 
+	    (,action-id  (register-action-in-frame
+			  ,current-frame
 			  ,action-object))
-						      
-				
+
+
 	    (,url (compute-url ,action-object *current-component*)))
        (declare (ignorable ,action-id ,url))
        ,,@body)))
@@ -37,7 +37,7 @@
 				 &allow-other-attributes others
 				 &body body)
   "A Simple <:A which does not require javascript."
-  (%with-action-unique-names 
+  (%with-action-unique-names
    `(<:a :href (print-uri-to-string ,url)
 	 ,@others
 	 ,@body)))
@@ -48,8 +48,8 @@
 				    &allow-other-attributes others
 				    &body body)
   "A Simple form which does not require javascript. "
-  (%with-action-unique-names 
-    `(let ((*in-form* t)) 
+  (%with-action-unique-names
+    `(let ((*in-form* t))
        (<:form :action (print-uri-to-string-sans-query ,url)
 	       ,@others
 	       (dolist (query (uri.query ,url))
@@ -63,10 +63,10 @@
 (deftag-macro <ucw:submit (&attribute action action* function value
 				      &allow-other-attributes others
 				      &body body)
-  (%with-action-unique-names 
-    `(<:input :type "submit" 
+  (%with-action-unique-names
+    `(<:input :type "submit"
 	      :value (or ,value ,@body)
-	      :name (format nil "~A~A~A" 
+	      :name (format nil "~A~A~A"
 			    ,+action-parameter-name+
 			    ,+action-compound-name-delimiter+
 			    ,action-id)
@@ -95,7 +95,7 @@
 					&allow-other-attributes others &body body)
   (%with-callback-writer
     (let ((reader (or reader accessor)))
-       `(<:textarea 
+       `(<:textarea
          :name (register-callback ,writer :id ,name)
          ,@others
          ,@(cond (body `((<:as-html ,@body)))
@@ -106,7 +106,7 @@
 
 
 (deftag-macro <ucw::%select (&attribute writer accessor reader
-					(test '#'eql) 
+					(test '#'eql)
 					(key '#'identity)
 					name
                              &allow-other-attributes others
@@ -159,7 +159,7 @@ reader to <ucw:select."
 		   ;;NB: we are applying key to both the option value
 		   ;; being rendered, as well as the selected
 		   ;; value(s).
-		   
+
 		   ;;That was how the code worked previously, I don't
 		   ;;know if it is desirable.
 
@@ -188,12 +188,3 @@ reader to <ucw:select."
   <UCW:SELECT tag. Unlike \"regular\" OPTION tags the :value
   attribute can be any lisp object (printable or not)."
   `(<ucw::%option ,@others ,@body))
-  
-  
-  
-
-  
-
-
-			    
-

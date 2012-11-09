@@ -1,3 +1,7 @@
+
+
+
+
 (in-package :ucw-test)
 
 (defsuite* (test/application :in test) ()
@@ -24,7 +28,7 @@
 (defparameter +application-test-path+       (strcat +test-application-url-prefix+ "brilliant.ucw"))
 
 (defmethod service ((app test-application) context)
-  "Creates a special case for the remote test 
+  "Creates a special case for the remote test
 This also tests CALL-AS-RESPONSE-HANDLER."
   (if (string= (query-path (context.request context)) +application-test-path+)
       (progn
@@ -124,5 +128,3 @@ This also tests CALL-AS-RESPONSE-HANDLER."
       (is (not (null (assoc :cache-control headers))))
       (is (not (null (assoc :expires headers))))))
   (values))
-
-

@@ -28,7 +28,7 @@
                    (if (and ,last-modified-value
                             ,if-modified-value
                             (<= ,last-modified-value
-                                (date:parse-time 
+                                (date:parse-time
                                  ;; IE sends junk with the date (but
                                  ;; sends it after a semicolon)
                                  (subseq ,if-modified-value 0
@@ -44,7 +44,7 @@
                            (setf (get-header response "Content-Length")
 				 (princ-to-string ,content-length-value)))
                          ,@body)))))))
-  
+
   (defserve (serve-stream (stream &key
                                   (request (context.request *context*))
                                   (response (context.response *context*))

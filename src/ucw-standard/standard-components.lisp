@@ -5,7 +5,7 @@
     (call-next-method)))
 
 (defclass standard-application (basic-application)
-  ((action-class :accessor application.action-class 
+  ((action-class :accessor application.action-class
 		 :initform 'standard-action
 		 :initarg :action-class)))
 
@@ -127,7 +127,7 @@ window)."
   (:documentation "A convenience class for writing window components."))
 
 
-(defcomponent standard-window-component 
+(defcomponent standard-window-component
   (basic-window-component)
   ((body
     :initform nil
@@ -158,6 +158,6 @@ window)."
 
 (defmethod render ((m info-message))
   (<:div
-   :class "info-mssage" 
+   :class "info-mssage"
    (<:as-html (message m)))
    (<ucw:a :action (answer-component m nil) "Ok"))

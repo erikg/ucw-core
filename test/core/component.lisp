@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 (in-package :ucw-test)
 
 (defsuite* (test/component :in test) ()
@@ -63,10 +70,3 @@
                  (web (uri +component-entry-point-2+))))
     (is (string= "Test URL MESSAGE? Brilliant!"
                  (web (uri +component-entry-point-2+ "message" "URL MESSAGE?"))))))
-  
-
-
-
-
-
-
