@@ -51,8 +51,7 @@ the order of the dispathcers, (slot-value instance
   ((session-class :accessor session-class-of
                   :documentation "Caches the class of the effective session.")
    (session-table :accessor application.session-table
-                  :initform (make-hash-table :test 'equal))
-   (session-longevity :accessor session-longevity :initform *default-session-longevity* :initarg :session-longevity))
+                  :initform (make-hash-table :test 'equal)))
   (:documentation "This mixin adds session handling capabilities to applications."))
 
 (defclass standard-request-context (request-context)
@@ -131,9 +130,7 @@ dropped, its ALLOCATED-BACKTRACKS are remhash's from here. Because weak pointers
 are too expensive for this.")
    (lock :accessor lock-of)
    (session-frame-class :accessor session-frame-class-of
-			:documentation "Caches the class of the effective session frame.")
-   (application :accessor session.application :initarg :application :initform '())))
-
+			:documentation "Caches the class of the effective session frame.")))
 
 (defmethod initialize-instance :after ((self basic-session) &key)
   (setf (lock-of self) (make-recursive-lock (strcat "Session lock for "

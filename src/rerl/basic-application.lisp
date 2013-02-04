@@ -81,7 +81,6 @@ NIL if there is no session with that id."
     (let* ((session-id (new-random-key session-table +session-id-length+))
            ;; this way the initialize-instance of the session can set the session's lock name properly
            (new-session (make-instance (session-class-of application)
-				       :application application
                                        :id session-id)))
       (setf (gethash session-id session-table) new-session)
       (ucw.rerl.application.dribble "New Session id ~S." (session.id new-session))
