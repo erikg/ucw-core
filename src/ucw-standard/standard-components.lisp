@@ -51,7 +51,11 @@ symbol :SRC or :JS.
  (:JS form) - equivalent to (:SCRIPT (js:js* form))
  (:SCRIPT string) - write <script>STRING</script>.
 
-The elements will be rendered in order."))
+The elements will be rendered in order.")
+  (defer-css :accessor window-component.defer-css
+    :initarg :defer-css
+    :initform nil
+    :documentation "Render the CSS links after the body"))
   (:documentation "A mixin that renders basic html toplevel tags."))
 
 (defgeneric effective-window-stylesheets (window)
@@ -88,7 +92,7 @@ window)."
       (<:link :rel "icon"
 	      :type "image/x-icon"
 	      :href it))
-    (dolist (stylesheet (effective-window-stylesheets window))
+    (unless (window-component.defer-css window)
       (<:link :rel "stylesheet"
 	      :href stylesheet
 	      :type "text/css"))))
@@ -97,7 +101,12 @@ window)."
   (:method :around ((window basic-window-features-mixin))
            (<:body
             (render-window-scripts window)
-            (call-next-method))))
+            (call-next-method))
+	   (when (window-component.defer-css window)
+	     (dolist (stylesheet (effective-window-stylesheets window))
+	       (<:link :rel "stylesheet"
+		       :href stylesheet
+		       :type "text/css")))))
 
 (defgeneric render-window-scripts (window)
   (:method ((window basic-window-features-mixin))
@@ -144,11 +153,7 @@ window)."
   (awhen (window-component.icon window)
     (<:link :rel "icon"
 	    :type "image/x-icon"
-	    :href it))
-  (dolist (stylesheet (effective-window-stylesheets window))
-    (<:link :rel "stylesheet"
-	    :href stylesheet
-	    :type "text/css")))
+	    :href it)))
 
 (defmethod render-html-body ((window standard-window-component))
   (render (window-body window)))
