@@ -52,10 +52,10 @@ symbol :SRC or :JS.
  (:SCRIPT string) - write <script>STRING</script>.
 
 The elements will be rendered in order.")
-  (defer-css :accessor window-component.defer-css
-    :initarg :defer-css
-    :initform nil
-    :documentation "Render the CSS links after the body"))
+   (defer-css :accessor window-component.defer-css
+     :initarg :defer-css
+     :initform nil
+     :documentation "Render the CSS links after the body"))
   (:documentation "A mixin that renders basic html toplevel tags."))
 
 (defgeneric effective-window-stylesheets (window)
@@ -93,9 +93,10 @@ window)."
 	      :type "image/x-icon"
 	      :href it))
     (unless (window-component.defer-css window)
-      (<:link :rel "stylesheet"
-	      :href stylesheet
-	      :type "text/css"))))
+      (dolist (stylesheet (effective-window-stylesheets window))
+	(<:link :rel "stylesheet"
+		:href stylesheet
+		:type "text/css")))))
 
 (defgeneric render-html-body (window)
   (:method :around ((window basic-window-features-mixin))
