@@ -273,7 +273,7 @@ exists), otherwise returns NIL."
                (let ((buffer (make-array content-length :element-type '(unsigned-byte 8))))
                  (read-sequence buffer stream)
                  (return-from parse-request-body
-		   (list (list "xml" (octets-to-string buffer :iso-8859-1))))))
+		   (list (list "xml" (octets-to-string buffer :utf-8))))))
               (t (abort-backend-request "Invalid request content type"))))))))
   (ucw.backend.debug "Skipped parsing request body, raw Content-Type is [~S], raw Content-Length is [~S]"
                      raw-content-type raw-content-length)
