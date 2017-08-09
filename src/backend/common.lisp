@@ -274,6 +274,11 @@ exists), otherwise returns NIL."
                  (read-sequence buffer stream)
                  (return-from parse-request-body
 		   (list (list "xml" (octets-to-string buffer :utf-8))))))
+	      ("text/plain"
+               (let ((buffer (make-array content-length :element-type '(unsigned-byte 8))))
+                 (read-sequence buffer stream)
+                 (return-from parse-request-body
+		   (list (list "plain" (octets-to-string buffer :utf-8))))))
 	      ("application/json"
                (let ((buffer (make-array content-length :element-type '(unsigned-byte 8))))
                  (read-sequence buffer stream)
